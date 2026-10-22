@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مِراس - الملف الشخصي</title>
+
+  <!-- التنسيق المشترك للموقع -->
+  <link rel="stylesheet" href="Style.css">
+<link rel="stylesheet" href="components.css">
+  <!-- تنسيق صفحة الملف الشخصي فقط -->
+  <style>
+
+    /* ========================================
+       PROFILE PAGE
+    ======================================== */
+
+    .profile-page {
+      padding: 48px 24px 70px;
+    }
+
+    .profile-container {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+
+    /* ========================================
+       PAGE TITLE
+    ======================================== */
+
+    .profile-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      margin-bottom: 8px;
+    }
+
+    .profile-heading h1 {
+      margin: 0;
+
+      color: var(--ink-dark);
+      font-size: 34px;
+      font-weight: 500;
+    }
+
+    .profile-heading img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .profile-subtitle {
+      margin: 0 0 30px;
+
+      text-align: center;
+
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+
+    /* ========================================
+       STUDENT NAME
+    ======================================== */
+
+    .student-intro {
+      margin-bottom: 20px;
+      padding: 18px 22px;
+
+      background-color: var(--header-bg);
+
+      border: 1px solid var(--teal-light);
+      border-right: 5px solid var(--ink);
+      border-radius: 15px;
+
+      box-shadow: 0 5px 15px rgba(46, 85, 96, 0.08);
+    }
+
+    .student-intro h2 {
+      margin: 0 0 5px;
+
+      color: var(--ink-dark);
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .student-intro p {
+      margin: 0;
+
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+
+    /* ========================================
+       SHARED PROFILE CARD
+    ======================================== */
+
+    .profile-card {
+      margin-bottom: 24px;
+
+      overflow: hidden;
+
+      background-color: var(--header-bg);
+
+      border-radius: 17px;
+
+      box-shadow: 0 5px 16px rgba(46, 85, 96, 0.10);
+    }
+
+
+    /* ========================================
+       DARK SECTION HEADER
+    ======================================== */
+
+    .card-header {
+      padding: 15px 22px;
+
+      background-color: var(--ink-dark);
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .card-header h2 {
+      margin: 0;
+
+      color: var(--header-bg);
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+
+    /* ========================================
+       CARD BODY
+    ======================================== */
+
+    .card-body {
+      padding: 22px;
+    }
+
+
+    /* ========================================
+       BASIC INFORMATION
+    ======================================== */
+
+    .student-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .info-item {
+      padding: 15px 17px;
+
+      background-color: var(--beige);
+
+      border: 1px solid var(--teal-light);
+      border-radius: 11px;
+    }
+
+    .info-label {
+      display: block;
+
+      margin-bottom: 6px;
+
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    .info-value {
+      display: block;
+
+      color: var(--ink-dark);
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+
+    /* ========================================
+       STUDENT RECORD SUMMARY
+    ======================================== */
+
+    .record-summary {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+
+      margin-bottom: 25px;
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+
+      padding: 17px;
+
+      background-color: var(--beige);
+
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+    }
+
+    .summary-icon {
+      width: 48px;
+      height: 48px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background-color: var(--yellow);
+
+      border-radius: 50%;
+
+      font-size: 21px;
+    }
+
+    .summary-number {
+      display: block;
+
+      margin-bottom: 2px;
+
+      color: var(--ink-dark);
+      font-size: 23px;
+      font-weight: 500;
+    }
+
+    .summary-label {
+      display: block;
+
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+
+    /* ========================================
+       ACHIEVEMENTS
+    ======================================== */
+
+    .achievements-title {
+      margin: 0 0 12px;
+
+      color: var(--ink-dark);
+      font-size: 17px;
+      font-weight: 500;
+    }
+
+    .achievements-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .achievement-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      padding: 15px 17px;
+
+      background-color: var(--beige);
+
+      border-right: 4px solid var(--teal);
+      border-radius: 11px;
+    }
+
+    .achievement-info {
+      flex: 1;
+    }
+
+    .achievement-info h3 {
+      margin: 0 0 4px;
+
+      color: var(--ink-dark);
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .achievement-info p {
+      margin: 0;
+
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+
+    /* ========================================
+       VERIFIED BADGE
+    ======================================== */
+
+    .achievement-status {
+      flex-shrink: 0;
+
+      padding: 5px 13px;
+
+      background-color: var(--teal-light);
+      color: var(--ink-dark);
+
+      border-radius: 20px;
+
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+
+    /* ========================================
+       EMPTY ACHIEVEMENTS STATE
+    ======================================== */
+
+    .empty-achievements {
+      display: none;
+
+      padding: 28px 20px;
+
+      text-align: center;
+
+      background-color: var(--beige);
+
+      border: 2px dashed var(--teal-light);
+      border-radius: 11px;
+
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+
+    @media (max-width: 650px) {
+
+      .profile-page {
+        padding: 35px 16px 50px;
+      }
+
+      .profile-heading h1 {
+        font-size: 27px;
+      }
+
+      .profile-heading img {
+        width: 35px;
+        height: 35px;
+      }
+
+      .profile-subtitle {
+        font-size: 14px;
+        margin-bottom: 23px;
+      }
+
+      .student-intro {
+        padding: 16px 17px;
+      }
+
+      .student-intro h2 {
+        font-size: 20px;
+      }
+
+      .card-header {
+        padding: 14px 17px;
+      }
+
+      .card-header h2 {
+        font-size: 18px;
+      }
+
+      .card-body {
+        padding: 17px;
+      }
+
+      .student-info,
+      .record-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .achievement-item {
+        align-items: flex-start;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body data-role="student" data-page="profile">
+
+
+  <!-- ========================================
+       SHARED HEADER
+  ========================================= -->
+
+  <header class="header" id="site-header"></header>
+
+
+
+  <!-- ========================================
+       PROFILE PAGE
+  ========================================= -->
+
+  <main class="profile-page">
+
+    <div class="profile-container">
+
+
+      <!-- ====================================
+           PAGE TITLE
+      ===================================== -->
+
+      <div class="profile-heading">
+
+        <h1>
+          الملف الشخصي
+        </h1>
+
+        <img
+          src="sunMeras.png"
+          alt=""
+        >
+
+      </div>
+
+
+      <p class="profile-subtitle">
+        معلومات الطالب وسجل مشاركاته وإنجازاته في مِراس
+      </p>
+
+
+
+      <!-- ====================================
+           STUDENT INTRO
+      ===================================== -->
+
+      <div class="student-intro">
+
+        <h2>
+          سارة محمد
+        </h2>
+
+        <p>
+          طالبة في جامعة الملك سعود
+        </p>
+
+      </div>
+
+
+
+      <!-- ====================================
+           BASIC INFORMATION
+      ===================================== -->
+
+      <section class="profile-card">
+
+
+        <!-- رأس القسم -->
+        <div class="card-header">
+
+          <h2>
+            المعلومات الأساسية
+          </h2>
+
+        </div>
+
+
+        <!-- محتوى القسم -->
+        <div class="card-body">
+
+
+          <div class="student-info">
+
+
+            <!-- الاسم الكامل -->
+            <div class="info-item">
+
+              <span class="info-label">
+                الاسم الكامل
+              </span>
+
+              <span class="info-value">
+                سارة محمد
+              </span>
+
+            </div>
+
+
+
+            <!-- الرقم الجامعي -->
+            <div class="info-item">
+
+              <span class="info-label">
+                الرقم الجامعي
+              </span>
+
+              <span class="info-value">
+                44XXXXXXX
+              </span>
+
+            </div>
+
+
+
+            <!-- التخصص -->
+            <div class="info-item">
+
+              <span class="info-label">
+                التخصص
+              </span>
+
+              <span class="info-value">
+                تقنية المعلومات
+              </span>
+
+            </div>
+
+
+
+            <!-- البريد الإلكتروني -->
+            <div class="info-item">
+
+              <span class="info-label">
+                البريد الإلكتروني
+              </span>
+
+              <span
+                class="info-value"
+                dir="ltr">
+                sara@student.ksu.edu.sa
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ====================================
+           STUDENT RECORD
+      ===================================== -->
+
+      <section class="profile-card">
+
+
+        <!-- رأس القسم -->
+        <div class="card-header">
+
+          <h2>
+            سجل الطالب
+          </h2>
+
+        </div>
+
+
+        <!-- محتوى القسم -->
+        <div class="card-body">
+
+
+          <!-- ================================
+               RECORD SUMMARY
+          ================================= -->
+
+          <div class="record-summary">
+
+
+            <!-- الإنجازات الموثقة -->
+            <div class="summary-item">
+
+              <div class="summary-icon">
+                🏆
+              </div>
+
+              <div>
+
+                <span class="summary-number">
+                  2
+                </span>
+
+                <span class="summary-label">
+                  إنجازان موثقان
+                </span>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- الساعات التطوعية -->
+            <div class="summary-item">
+
+              <div class="summary-icon">
+                ⏱
+              </div>
+
+              <div>
+
+                <span class="summary-number">
+                  32
+                </span>
+
+                <span class="summary-label">
+                  ساعة تطوعية
+                </span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- ================================
+               ACHIEVEMENTS
+          ================================= -->
+
+          <h3 class="achievements-title">
+            الإنجازات
+          </h3>
+
+
+          <div class="achievements-list">
+
+
+            <!-- الإنجاز الأول -->
+            <div class="achievement-item">
+
+              <div class="achievement-info">
+
+                <h3>
+                  تنظيم فعالية تقنية
+                </h3>
+
+                <p>
+                  نادي التقنية
+                </p>
+
+              </div>
+
+              <span class="achievement-status">
+                موثق
+              </span>
+
+            </div>
+
+
+
+            <!-- الإنجاز الثاني -->
+            <div class="achievement-item">
+
+              <div class="achievement-info">
+
+                <h3>
+                  المشاركة في مبادرة تطوعية
+                </h3>
+
+                <p>
+                  نادي المسؤولية الاجتماعية
+                </p>
+
+              </div>
+
+              <span class="achievement-status">
+                موثق
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
+          <!-- =================================
+               EMPTY STATE
+
+               إذا لم يكن لدى الطالب إنجازات:
+               1- نخفي achievements-list
+               2- نظهر empty-achievements
+               3- يكون عدد الإنجازات 0
+          ================================== -->
+
+          <div class="empty-achievements">
+
+            لا توجد إنجازات موثقة حتى الآن.
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+
+  <!-- ========================================
+       SHARED FOOTER
+  ========================================= -->
+
+  <footer class="footer" id="site-footer"></footer>
+
+
+
+  <!-- الهيدر والفوتر المشترك -->
+  <script src="layout.js" defer></script>
+
+
+</body>
+
+</html>

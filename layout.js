@@ -1,0 +1,203 @@
+/* Shared header and footer. Edit them here once and every page changes.
+   A page picks its menu with:
+   <body data-role="student" data-page="home">
+   أو
+   <body data-role="club" data-page="home">
+*/
+
+(function () {
+
+  var role = document.body.dataset.role || "student";
+  var page = document.body.dataset.page || "";
+
+
+  /* ==========================================================
+     روابط الهيدر
+     ========================================================== */
+
+  var NAV = {
+
+    /* صفحات الطالب */
+    student: [
+      ["home", "الرئيســية", "home.html"],
+      ["opportunities", "الفــرص", "opportunities.html"],
+      ["clubs", "الأنــدية", "clubs.html"],
+      ["requests", "طلبــاتي", "requests.html"],
+      ["profile", "الملــف الشخصــي", "profile.html"]
+    ],
+
+    /* صفحات مسؤول النادي */
+    club: [
+      ["home", "الرئيســية", "clubAdmin.html"],
+      ["manage-opportunities", "إدارة الفــرص", "opportunitiesClub.html"],
+      ["manage-requests", "إدارة الطلبــات", "applications.html"],
+      ["posts", "المنشــورات", "post.html"],
+      ["achievements", "توثيــق الإنجــازات", "achievements.html"],
+      ["club-info", "معلومــات النــادي", "clubInfo.html"]
+    ]
+
+  };
+
+
+  /* ==========================================================
+     الصفحة الرئيسية حسب نوع المستخدم
+     ========================================================== */
+
+  var homeHref =
+    role === "club"
+      ? "clubAdmin.html"
+      : "home.html";
+
+
+  /* ==========================================================
+     نص الفوتر
+     ========================================================== */
+
+  var tagline =
+    role === "club"
+      ? "منصة تجمع طلاب جامعة الملك سعود بالأندية والفرص الجامعية."
+      : "وجهَتــك إلى الأنديــة الطلابيَّــة بجامعــة الملــك سعــود.";
+
+
+  /* ==========================================================
+     إنشاء روابط الهيدر
+     ========================================================== */
+
+  var links = NAV[role].map(function (l) {
+
+    return (
+      '<a href="' +
+      l[2] +
+      '"' +
+      (l[0] === page ? ' class="active"' : "") +
+      ">" +
+      l[1] +
+      "</a>"
+    );
+
+  }).join("");
+
+
+  /* ==========================================================
+     HEADER
+     ========================================================== */
+
+  var header = document.getElementById("site-header");
+
+  if (header) {
+
+    header.innerHTML =
+
+      /* الشعار */
+      '<a href="' + homeHref + '" class="logo">' +
+        '<img src="logoMeras.png" alt="شعار مِراس">' +
+      '</a>' +
+
+      /* زر القائمة للجوال */
+      '<button type="button" ' +
+        'class="menu-btn" ' +
+        'aria-label="القائمة" ' +
+        'aria-expanded="false" ' +
+        'aria-controls="nav">' +
+
+        '<span></span>' +
+        '<span></span>' +
+        '<span></span>' +
+
+      '</button>' +
+
+      /* روابط التنقل */
+      '<nav class="nav" id="nav">' +
+
+        links +
+
+        /* تسجيل الخروج */
+        '<a href="login.html" class="logout">' +
+          'تسجيــل الخــروج' +
+        '</a>' +
+
+      '</nav>';
+
+
+    /* ========================================================
+       قائمة الجوال
+       ======================================================== */
+
+    var btn = header.querySelector(".menu-btn");
+    var nav = header.querySelector(".nav");
+
+    btn.addEventListener("click", function () {
+
+      var open = nav.classList.toggle("open");
+
+      btn.setAttribute(
+        "aria-expanded",
+        open
+      );
+
+    });
+
+  }
+
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+
+  var footer = document.getElementById("site-footer");
+
+  if (footer) {
+
+    footer.innerHTML =
+
+      '<div class="footer-top">' +
+
+        '<div class="footer-brand">' +
+
+          '<div class="footer-title">' +
+
+            '<img ' +
+              'src="sunMeras.png" ' +
+              'alt="شمس مِراس" ' +
+              'class="footer-sun">' +
+
+            '<h2>مِـــراس</h2>' +
+
+          '</div>' +
+
+          '<p>' +
+            tagline +
+          '</p>' +
+
+        '</div>' +
+
+
+        '<nav class="footer-links" aria-label="روابط سريعة">' +
+
+          '<a href="' + homeHref + '">' +
+            'الرئيســية' +
+          '</a>' +
+
+          '<a href="opportunities.html">' +
+            'الفــرص' +
+          '</a>' +
+
+          '<a href="clubs.html">' +
+            'الأنــدية' +
+          '</a>' +
+
+          '<a href="about.html">' +
+            'عــن مِــراس' +
+          '</a>' +
+
+        '</nav>' +
+
+      '</div>' +
+
+      '<p class="copyright">' +
+        '© 2026 مِراس. جميع الحقوق محفوظة.' +
+      '</p>';
+
+  }
+
+})();
